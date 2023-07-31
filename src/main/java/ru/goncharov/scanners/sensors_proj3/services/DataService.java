@@ -28,6 +28,9 @@ public class DataService {
     public Optional<Data> findBySensor(Sensor sensor){
         return dataRepository.findBySensor(sensor);
     }
+    public int getRainyDaysCount(){
+        return dataRepository.findByRaining(true).size();
+    }
     @Transactional
     public void save(Data data){
         data.setMeasuredAt(LocalDateTime.now());

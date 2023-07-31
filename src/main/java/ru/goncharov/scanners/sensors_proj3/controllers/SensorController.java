@@ -7,10 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.goncharov.scanners.sensors_proj3.dto.SensorDTO;
 import ru.goncharov.scanners.sensors_proj3.models.Sensor;
 import ru.goncharov.scanners.sensors_proj3.services.SensorService;
@@ -21,7 +18,7 @@ import ru.goncharov.scanners.sensors_proj3.util.SensorValidator;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController //каждый метод возвращает данные
 @RequestMapping("/sensors")
 public class SensorController {
 
