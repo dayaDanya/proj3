@@ -1,5 +1,7 @@
 package ru.goncharov.scanners.sensors_proj3.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -19,6 +21,7 @@ public class Sensor {
     private String name;
 
     @OneToMany(mappedBy = "sensor")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Data> dataList;
 
     public Sensor(String name) {

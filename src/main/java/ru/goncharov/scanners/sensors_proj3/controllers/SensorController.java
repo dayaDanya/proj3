@@ -12,6 +12,7 @@ import ru.goncharov.scanners.sensors_proj3.dto.SensorDTO;
 import ru.goncharov.scanners.sensors_proj3.models.Sensor;
 import ru.goncharov.scanners.sensors_proj3.services.SensorService;
 import ru.goncharov.scanners.sensors_proj3.util.SensorErrorResponse;
+import ru.goncharov.scanners.sensors_proj3.util.SensorNotFoundException;
 import ru.goncharov.scanners.sensors_proj3.util.SensorNotRegisteredException;
 import ru.goncharov.scanners.sensors_proj3.util.SensorValidator;
 
@@ -38,7 +39,7 @@ public class SensorController {
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> register(@RequestBody @Valid SensorDTO sensorDTO,
                                                    BindingResult bindingResult){
-        sensorValidator.validate(sensorDTO, bindingResult);
+        sensorValidator.validate(convertToSensor(sensorDTO), bindingResult);
         if(bindingResult.hasErrors()){
             StringBuilder errorMsg = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
@@ -60,6 +61,7 @@ public class SensorController {
                         System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST); //404
     }
+
 
     private Sensor convertToSensor(SensorDTO sensorDTO){
         return modelMapper.map(sensorDTO, Sensor.class);

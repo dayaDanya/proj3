@@ -13,16 +13,16 @@ public class Data {
     @Column(name = "data_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotEmpty
+    //@NotEmpty
     @Min(value = -100)
     @Max(value = 100)
     @Column(name = "value")
     private int value;
 
-    @NotEmpty
+    //@NotEmpty
     @Column(name = "raining")
     private boolean raining;
-    @NotEmpty
+   // @NotEmpty
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     private Sensor sensor;
@@ -77,5 +77,16 @@ public class Data {
 
     public void setMeasuredAt(LocalDateTime measuredAt) {
         this.measuredAt = measuredAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "id=" + id +
+                ", value=" + value +
+                ", raining=" + raining +
+                ", sensor=" + sensor +
+                ", measuredAt=" + measuredAt +
+                '}';
     }
 }

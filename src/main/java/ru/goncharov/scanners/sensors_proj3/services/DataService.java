@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.goncharov.scanners.sensors_proj3.models.Data;
 import ru.goncharov.scanners.sensors_proj3.models.Sensor;
 import ru.goncharov.scanners.sensors_proj3.repositories.DataRepository;
+import ru.goncharov.scanners.sensors_proj3.repositories.SensorRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,9 +16,12 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class DataService {
     private final DataRepository dataRepository;
+
+    private final SensorRepository sensorRepository;
     @Autowired
-    public DataService(DataRepository dataRepository) {
+    public DataService(DataRepository dataRepository, SensorRepository sensorRepository) {
         this.dataRepository = dataRepository;
+        this.sensorRepository = sensorRepository;
     }
     public List<Data> findAll(){
         return dataRepository.findAll();
@@ -25,14 +29,15 @@ public class DataService {
     public Optional<Data> findOne(int id){
         return dataRepository.findById(id);
     }
-    public Optional<Data> findBySensor(Sensor sensor){
-        return dataRepository.findBySensor(sensor);
-    }
     public int getRainyDaysCount(){
         return dataRepository.findByRaining(true).size();
     }
     @Transactional
     public void save(Data data){
+        System.out.println(data.toString());
+        Sensor sensor = sensorRepository.findByName(
+                data.getSensor().getName()).get();
+        data.setSensor(sensor);
         data.setMeasuredAt(LocalDateTime.now());
         dataRepository.save(data);
     }

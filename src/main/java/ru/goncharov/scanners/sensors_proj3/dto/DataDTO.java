@@ -1,20 +1,22 @@
 package ru.goncharov.scanners.sensors_proj3.dto;
 
+import ru.goncharov.scanners.sensors_proj3.models.Sensor;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 public class DataDTO {
-    @NotEmpty
+    //@NotEmpty
     @Min(value = -100)
     @Max(value = 100)
     private int value;
-    @NotEmpty
+   // @NotEmpty
     private boolean raining;
-    @NotEmpty
-    private SensorDTO sensor;
+   // @NotEmpty
+    private Sensor sensor;
 
-    public DataDTO(int value, boolean raining, SensorDTO sensor) {
+    public DataDTO(int value, boolean raining, Sensor sensor) {
         this.value = value;
         this.raining = raining;
         this.sensor = sensor;
@@ -39,11 +41,11 @@ public class DataDTO {
         this.raining = raining;
     }
 
-    public SensorDTO getSensor() {
+    public Sensor getSensor() {
         return sensor;
     }
 
-    public void setSensor(SensorDTO sensor) {
+    public void setSensor(Sensor sensor) {
         this.sensor = sensor;
     }
 }
