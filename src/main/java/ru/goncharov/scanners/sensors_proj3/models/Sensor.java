@@ -20,8 +20,9 @@ public class Sensor {
     @Size(min = 3, max = 30, message = "Длина названия от 3 до 30 символов")
     private String name;
 
+
     @OneToMany(mappedBy = "sensor")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Data> dataList;
 
     public Sensor(String name) {

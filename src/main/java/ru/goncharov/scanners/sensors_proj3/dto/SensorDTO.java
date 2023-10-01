@@ -8,12 +8,14 @@ public class SensorDTO {
     @Size(min = 3, max = 30, message = "Длина названия от 3 до 30 символов")
     private String name;
 
-    public SensorDTO(String name) {
-        this.name = name;
-    }
-
-    public SensorDTO() {
-    }
+    /// конструкторы не нужны т.к. jackson переводит JSON с помощью сеттеров
+    
+//    public SensorDTO(String name) {
+//        this.name = name;
+//    }
+//
+//    public SensorDTO() {
+//    }
 
     public String getName() {
         return name;

@@ -34,7 +34,6 @@ public class DataService {
     }
     @Transactional
     public void save(Data data){
-        System.out.println(data.toString());
         Sensor sensor = sensorRepository.findByName(
                 data.getSensor().getName()).get();
         data.setSensor(sensor);

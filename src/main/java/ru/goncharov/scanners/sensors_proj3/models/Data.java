@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,16 +14,16 @@ public class Data {
     @Column(name = "data_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    //@NotEmpty
+    @NotNull
     @Min(value = -100)
     @Max(value = 100)
     @Column(name = "value")
-    private int value;
+    private Integer value;
 
-    //@NotEmpty
+    @NotNull
     @Column(name = "raining")
-    private boolean raining;
-   // @NotEmpty
+    private Boolean raining;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     private Sensor sensor;
@@ -47,19 +48,19 @@ public class Data {
         this.id = id;
     }
 
-    public int getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 
-    public boolean isRaining() {
+    public Boolean getRaining() {
         return raining;
     }
 
-    public void setRaining(boolean raining) {
+    public void setRaining(Boolean raining) {
         this.raining = raining;
     }
 

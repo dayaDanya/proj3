@@ -23,6 +23,8 @@ import java.util.List;
 @RequestMapping("/sensors")
 public class SensorController {
 
+
+
     private final SensorService sensorService;
 
     private final ModelMapper modelMapper;
@@ -38,9 +40,9 @@ public class SensorController {
 
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> register(@RequestBody @Valid SensorDTO sensorDTO,
-                                                   BindingResult bindingResult){
+                                               BindingResult bindingResult) {
         sensorValidator.validate(convertToSensor(sensorDTO), bindingResult);
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             StringBuilder errorMsg = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
             for (FieldError error : errors) {
@@ -63,7 +65,7 @@ public class SensorController {
     }
 
 
-    private Sensor convertToSensor(SensorDTO sensorDTO){
+    private Sensor convertToSensor(SensorDTO sensorDTO) {
         return modelMapper.map(sensorDTO, Sensor.class);
     }
 }

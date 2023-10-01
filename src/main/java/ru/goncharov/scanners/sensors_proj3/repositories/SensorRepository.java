@@ -6,6 +6,7 @@ import ru.goncharov.scanners.sensors_proj3.models.Sensor;
 
 import java.util.Optional;
 @Repository
+
 public interface SensorRepository extends JpaRepository<Sensor, Integer> {
     Optional<Sensor> findByName(String name);
 }
